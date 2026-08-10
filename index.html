@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>営業タイプ診断｜あなたの売り方を16タイプで言語化する</title>
+<meta name="description" content="64問であなたの営業タイプ（16タイプ）と営業スキル8項目を診断します。強み・弱み、向いている営業職種、マネージャー向けの育て方まで出ます。">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="営業タイプ診断｜あなたの売り方を16タイプで言語化する">
+<meta property="og:description" content="64問であなたの営業タイプと営業スキル8項目を診断。向いている職種と育て方まで出ます。">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ============================================================
+       スタート
+       ============================================================ -->
+  <section id="screen-start" class="screen is-active">
+    <div class="hero-top">
+      <span class="eyebrow">SALES TYPE DIAGNOSIS</span>
+      <h1 class="hero-title">あなたの売り方を<br><span class="grad">16タイプ</span>で言語化する</h1>
+      <p class="hero-lead">
+        営業の「タイプ」と「スキル」は別ものです。この診断は2つを分けて測り、
+        強み・弱み・向いている職種、そしてマネージャー向けの育て方まで出します。
+      </p>
+    </div>
+
+    <div class="axis-grid">
+      <div class="axis-chip"><b>H / F</b><span>新規開拓 ⇄ 既存深耕</span><small>どこに向かうか</small></div>
+      <div class="axis-chip"><b>L / E</b><span>論理 ⇄ 共感</span><small>何で相手を動かすか</small></div>
+      <div class="axis-chip"><b>P / D</b><span>主導 ⇄ 探索</span><small>どう商談を進めるか</small></div>
+      <div class="axis-chip"><b>S / C</b><span>即行動 ⇄ 慎重</span><small>どう意思決定するか</small></div>
+    </div>
+
+    <h2 class="section-title">診断ボリュームを選ぶ <span class="sub">SELECT</span></h2>
+    <div class="mode-list" id="mode-list">
+      <label class="mode is-on" data-mode="full">
+        <input type="radio" name="mode" value="full" checked>
+        <div class="mode-head">
+          <span class="mode-name">フル版</span>
+          <span class="mode-meta">全64問・約8分</span>
+          <span class="mode-badge">推奨</span>
+        </div>
+        <p class="mode-desc">タイプ40問＋スキル24問。1軸あたり10問なので判定がぶれにくく、採用・配置・研修に使うならこちら。</p>
+      </label>
+      <label class="mode" data-mode="lite">
+        <input type="radio" name="mode" value="lite">
+        <div class="mode-head">
+          <span class="mode-name">ライト版</span>
+          <span class="mode-meta">全36問・約4分</span>
+        </div>
+        <p class="mode-desc">タイプ20問＋スキル16問。結果の項目はフル版と同じですが、スコアは目安として扱ってください。SNS配布や社内の話のタネ向け。</p>
+      </label>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btn-start">診断をはじめる</button>
+      <button class="btn ghost" id="btn-resume" style="display:none">前回の続きから再開する</button>
+    </div>
+
+    <p class="note" style="margin-top:16px">
+      回答はあなたのブラウザ内だけで処理されます。サーバーには何も送信されません。<br>
+      直感で、少し早めに答えたほうが結果が正確になります。
+    </p>
+  </section>
+
+  <!-- ============================================================
+       設問
+       ============================================================ -->
+  <section id="screen-quiz" class="screen">
+    <div class="q-bar">
+      <div class="q-bar-row">
+        <span class="q-step" id="q-step">STEP 1｜性格・行動特性</span>
+        <span class="q-count"><b id="q-now">1</b> / <span id="q-total">40</span></span>
+      </div>
+      <div class="progress"><i id="q-progress"></i></div>
+    </div>
+
+    <div id="q-index" class="q-index">Q1</div>
+    <p class="q-text" id="q-text">—</p>
+    <div class="likert" id="q-likert"></div>
+
+    <div class="q-nav">
+      <button class="btn ghost" id="btn-prev">← 戻る</button>
+      <button class="btn" id="btn-next" disabled>次へ →</button>
+    </div>
+
+    <p class="note" style="margin-top:20px">
+      「どちらが良いか」ではなく「実際の自分はどうか」で選んでください。<br>
+      選ぶと自動で次の設問に進みます。
+    </p>
+  </section>
+
+  <!-- ============================================================
+       STEP1 → STEP2 のあいだ
+       ============================================================ -->
+  <section id="screen-interlude" class="screen">
+    <div class="interlude">
+      <span class="step-badge">STEP 1 COMPLETE</span>
+      <p class="big">タイプの判定が終わりました</p>
+      <p class="note" style="max-width:26em;margin:0 auto 8px">
+        ここからは<b style="color:var(--text)">STEP2・営業スキル</b>です。<br>
+        STEP1が「どう売りたいか（スタイル）」を聞いたのに対し、<br>
+        STEP2は「実際にできているか（実力）」を聞きます。<br><br>
+        タイプに優劣はありませんが、スキルには差が出ます。<br>
+        できていないものは正直に低く付けたほうが、<br>
+        あとの成長アドバイスが役に立ちます。
+      </p>
+    </div>
+    <div class="btn-row">
+      <button class="btn" id="btn-step2">STEP2 にすすむ</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       結果
+       ============================================================ -->
+  <section id="screen-result" class="screen">
+    <div id="result-body"></div>
+
+    <div class="btn-row two no-print" style="margin-top:34px">
+      <button class="btn ghost" id="btn-print">結果を印刷 / PDF保存</button>
+      <button class="btn ghost" id="btn-retry">もう一度診断する</button>
+    </div>
+
+    <p class="footer-note">
+      この診断は自己申告にもとづく行動特性の可視化ツールです。医学的・心理臨床的な診断ではなく、
+      採用の合否や人事評価を単独で決めるために作られたものではありません。
+      面談やアセスメントと組み合わせて、配置や育成の「共通言語」としてお使いください。
+    </p>
+  </section>
+
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/scoring.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

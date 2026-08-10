@@ -1,0 +1,28 @@
+{
+  "questions": [
+    { "id": "S01", "skill": "apo", "level": 1, "lite": true, "text": "新しいリストを渡された日のうちに、架電やメール送信を実際に始めている" },
+    { "id": "S02", "skill": "hearing", "level": 1, "lite": true, "text": "初回商談では、自分が説明する時間より相手に質問して話してもらう時間の方が長い" },
+    { "id": "S03", "skill": "pipeline", "level": 1, "lite": true, "text": "進行中の案件を一覧にして、それぞれ次にやることを書き出している" },
+    { "id": "S04", "skill": "proposal", "level": 1, "lite": true, "text": "提案資料は毎回、相手の社名や状況に合わせて中身を一部作り替えている" },
+    { "id": "S05", "skill": "action", "level": 1, "lite": true, "text": "その日にやると決めた訪問件数や架電件数を、ほぼ予定どおりこなしている" },
+    { "id": "S06", "skill": "closing", "level": 1, "lite": true, "text": "商談の最後に、次の打ち合わせ日程をその場で決めてから席を立っている" },
+    { "id": "S07", "skill": "relation", "level": 1, "lite": true, "text": "商談が終わった当日か翌日には、お礼と要点をまとめたメールを送っている" },
+    { "id": "S08", "skill": "issue", "level": 1, "lite": true, "text": "商談前に相手企業のサイトや最近のニュースを見て、困りごとの仮説を立てている" },
+    { "id": "S09", "skill": "hearing", "level": 2, "lite": true, "text": "相手の答えに対して、なぜそう考えるのかをその場で一段掘り下げて聞けている" },
+    { "id": "S10", "skill": "apo", "level": 2, "lite": true, "text": "受付や担当者に一度断られても、切り口を変えて言い直しアポにつなげたことがある" },
+    { "id": "S11", "skill": "closing", "level": 2, "lite": true, "text": "相手が迷っているとき、判断に必要な材料と回答期日を整理して提示できている" },
+    { "id": "S12", "skill": "action", "level": 2, "lite": true, "text": "大きな失注があった翌日でも、切り替えて新規のアプローチを止めずに続けられる" },
+    { "id": "S13", "skill": "issue", "level": 2, "lite": true, "text": "相手が言った要望の裏にある本当の困りごとを、言葉にして確認したことがある" },
+    { "id": "S14", "skill": "pipeline", "level": 2, "lite": true, "text": "各案件の受注見込み時期と金額を、上司に聞かれたらその場で答えられる状態にしている" },
+    { "id": "S15", "skill": "proposal", "level": 2, "lite": true, "text": "機能の説明ではなく、相手の日々の業務がどう変わるかを数字で示して提案している" },
+    { "id": "S16", "skill": "relation", "level": 2, "lite": true, "text": "窓口の担当者だけでなく、その上長や別部署の人ともやり取りできる関係がある" },
+    { "id": "S17", "skill": "action", "level": 3, "lite": false, "text": "目標に届かないと分かった時点で、自分から行動量を増やして月末までに挽回したことがある" },
+    { "id": "S18", "skill": "issue", "level": 3, "lite": false, "text": "相手が気づいていなかった課題を指摘し、そこは考えていなかったと言われたことがある" },
+    { "id": "S19", "skill": "apo", "level": 3, "lite": false, "text": "半年以上前に断られた相手へ時期を見て再アプローチし、商談化させたことがある" },
+    { "id": "S20", "skill": "relation", "level": 3, "lite": false, "text": "既存のお客様から別の会社を紹介してもらい、そこから新しい商談につながった経験がある" },
+    { "id": "S21", "skill": "proposal", "level": 3, "lite": false, "text": "相手の社内稟議にそのまま使える形に提案書を整え、上申してもらったことがある" },
+    { "id": "S22", "skill": "hearing", "level": 3, "lite": false, "text": "予算の上限・決裁する人・導入したい時期を、初回商談のうちに相手から聞き出せている" },
+    { "id": "S23", "skill": "pipeline", "level": 3, "lite": false, "text": "月初の時点で読んだ月末の着地見込みと、実際の受注額とのズレが小さく収まっている" },
+    { "id": "S24", "skill": "closing", "level": 3, "lite": false, "text": "値引きを持ち出さず、条件や納期の調整だけで受注まで持ち込んだことがある" }
+  ]
+}
