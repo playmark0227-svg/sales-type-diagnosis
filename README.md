@@ -94,13 +94,31 @@
 
 ```
 index.html              画面（4スクリーン：スタート / 設問 / 中間 / 結果）
-css/style.css           スタイル。ブランドカラーは冒頭の :root だけ触れば変わります
+css/style.css           スタイル。デザイントークンは冒頭の :root
 js/scoring.js           採点ロジック（軸・スキル・特性★・職種適性）
-js/app.js               画面制御と結果描画（レーダーチャートは自前SVG）
+js/app.js               画面制御・結果描画・背景パーティクル（レーダーチャートは自前SVG）
 js/data.js              ★自動生成★ 直接編集しないこと
 content/*.json          文章と設問の原本。ここを編集する
 tools/build-data.js     content/*.json → js/data.js の変換と検証
+assets/*.png            ロゴとファビコン
 ```
+
+### ロゴ素材
+
+| ファイル | 内容 | サイズ |
+|---|---|---|
+| `assets/logo-mark.png` | マークのみ・白の透過PNG | 246×264 |
+| `assets/logo-word.png` | ワードマーク「Insup」・白の透過PNG | 419×172 |
+| `assets/logo-lockup.png` | マーク＋ワードマークの縦組み | 423×467 |
+| `assets/favicon.png` | 黒地＋白マーク | 180×180 |
+| `assets/apple-touch-icon.png` | 同上 | 512×512 |
+
+コーポレートサイトの `images/logo.jpg`（白いロゴを暗い壁に取り付けた写真）から、
+輝度をアルファに変換して切り出したものです。輝度分布が 0.00〜0.31 と 0.78〜1.00 に
+きれいに分かれていたため、`smoothstep(0.34, 0.70)` でアンチエイリアスを保ったまま抜けました。
+
+**白抜きなので、白い背景で使うときは `filter: invert(1)` が必要です。**
+印刷用CSSではその指定を入れてあります。
 
 ### 文章を直したいとき
 

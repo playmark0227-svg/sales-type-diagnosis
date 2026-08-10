@@ -68,8 +68,55 @@ body.no-bg #bg-canvas { opacity: 0; }
   z-index: 1;
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 24px 120px;
+  padding: 0 24px 64px;
 }
+
+/* ============================================================
+   ロゴ（コーポレートサイトのロゴを切り出したもの）
+   ------------------------------------------------------------
+   assets/logo-mark.png  マークのみ  246×264
+   assets/logo-word.png  ワードマーク 419×172
+   いずれも白の透過PNG。黒背景以外で使うときは filter: invert(1)。
+   ============================================================ */
+
+.site-head { padding: 34px 0 4px; }
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: opacity .25s ease;
+}
+.brand:hover { opacity: .65; }
+
+.brand-mark { width: auto; height: 32px; display: block; }
+.brand-word { width: auto; height: 17px; display: block; }
+
+.brand.small .brand-mark { height: 24px; }
+.brand.small .brand-word { height: 13px; }
+.brand.small { opacity: .5; }
+.brand.small:hover { opacity: .85; }
+
+.site-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 88px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+.foot-meta {
+  margin: 0;
+  text-align: right;
+  font-size: .74rem;
+  line-height: 1.9;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+}
+.foot-meta span { font-family: var(--en); color: var(--text-faint); font-size: .68rem; }
 
 .screen { display: none; }
 .screen.is-active { display: block; animation: fadeIn .45s ease both; }
@@ -135,11 +182,11 @@ body.no-bg #bg-canvas { opacity: 0; }
   cursor: pointer;
   transition: background .25s ease, color .25s ease, border-color .25s ease, opacity .25s ease;
 }
-.btn:hover { background: transparent; color: #fff; }
+.btn:hover { background: transparent; color: var(--text); }
 
 .btn.ghost {
   background: transparent;
-  color: #fff;
+  color: var(--text);
 }
 .btn.ghost:hover { background: #fff; color: #000; }
 
@@ -167,7 +214,7 @@ body.no-bg #bg-canvas { opacity: 0; }
    スタート画面
    ============================================================ */
 
-.hero-top { padding: 96px 0 12px; }
+.hero-top { padding: 72px 0 12px; }
 
 .eyebrow {
   display: block;
@@ -224,7 +271,7 @@ body.no-bg #bg-canvas { opacity: 0; }
   font-size: 1.16rem;
   font-weight: 700;
   letter-spacing: .12em;
-  color: #fff;
+  color: var(--text);
   margin-bottom: 8px;
 }
 .axis-chip span {
@@ -258,7 +305,7 @@ body.no-bg #bg-canvas { opacity: 0; }
 }
 .mode:hover { border-color: var(--line-strong); }
 .mode input { position: absolute; opacity: 0; pointer-events: none; }
-.mode.is-on { border-color: #fff; background: var(--surface-2); }
+.mode.is-on { border-color: var(--text); background: var(--surface-2); }
 
 .mode-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
 .mode-name { font-size: 1.05rem; font-weight: 700; letter-spacing: .06em; }
@@ -309,7 +356,7 @@ body.no-bg #bg-canvas { opacity: 0; }
 }
 .q-step { color: var(--text-mid); }
 .q-count { font-family: var(--en); letter-spacing: .1em; }
-.q-count b { color: #fff; font-size: 1.05rem; font-weight: 700; }
+.q-count b { color: var(--text); font-size: 1.05rem; font-weight: 700; }
 
 .progress {
   max-width: var(--maxw);
@@ -361,8 +408,8 @@ body.no-bg #bg-canvas { opacity: 0; }
   cursor: pointer;
   transition: background .2s ease, color .2s ease;
 }
-.lk:hover { background: rgba(255, 255, 255, .05); color: #fff; }
-.lk.is-on { background: rgba(255, 255, 255, .09); color: #fff; }
+.lk:hover { background: rgba(255, 255, 255, .05); color: var(--text); }
+.lk.is-on { background: rgba(255, 255, 255, .09); color: var(--text); }
 
 .lk-dot {
   flex: 0 0 auto;
@@ -371,8 +418,8 @@ body.no-bg #bg-canvas { opacity: 0; }
   position: relative;
   transition: border-color .2s ease;
 }
-.lk:hover .lk-dot { border-color: #fff; }
-.lk.is-on .lk-dot { border-color: #fff; background: #fff; }
+.lk:hover .lk-dot { border-color: var(--text); }
+.lk.is-on .lk-dot { border-color: var(--text); background: #fff; }
 
 .q-nav { display: flex; gap: 12px; margin-top: 32px; }
 .q-nav .btn { width: auto; flex: 1; padding: 14px 20px; font-size: .82rem; }
@@ -429,7 +476,7 @@ body.no-bg #bg-canvas { opacity: 0; }
   font-weight: 700;
   letter-spacing: .1em;
   line-height: 1;
-  color: #fff;
+  color: var(--text);
 }
 
 .rh-name {
@@ -454,7 +501,7 @@ body.no-bg #bg-canvas { opacity: 0; }
   font-weight: 700;
   line-height: 1.9;
   letter-spacing: .05em;
-  color: #fff;
+  color: var(--text);
 }
 
 .rh-one { margin: 0; color: var(--text-mid); font-size: .88rem; line-height: 2.05; }
@@ -498,7 +545,7 @@ body.no-bg #bg-canvas { opacity: 0; }
   line-height: 1.6;
 }
 .axis-labels .side { color: var(--text-faint); }
-.axis-labels .side.win { color: #fff; }
+.axis-labels .side.win { color: var(--text); }
 .axis-labels .side em {
   font-family: var(--en);
   font-style: normal;
@@ -546,7 +593,7 @@ body.no-bg #bg-canvas { opacity: 0; }
   color: var(--text-mid);
 }
 .stars { letter-spacing: .2em; font-size: .96rem; color: var(--text-faint); line-height: 1; }
-.stars b { color: #fff; font-weight: 400; }
+.stars b { color: var(--text); font-weight: 400; }
 
 /* リスト（強み・弱みなど） */
 .plist { list-style: none; margin: 0; padding: 0; }
@@ -558,7 +605,7 @@ body.no-bg #bg-canvas { opacity: 0; }
   font-weight: 700; font-size: .94rem; letter-spacing: .05em; line-height: 1.75;
   margin-bottom: 6px;
 }
-.plist .t .mark { flex: 0 0 auto; color: #fff; font-size: .7rem; line-height: 2.3; }
+.plist .t .mark { flex: 0 0 auto; color: var(--text); font-size: .7rem; line-height: 2.3; }
 .plist.warn .t { color: var(--text-mid); }
 .plist.warn .t .mark { color: var(--text-dim); }
 .plist .d { margin: 0; font-size: .84rem; line-height: 2; color: var(--text-mid); padding-left: 21px; }
@@ -582,7 +629,7 @@ body.no-bg #bg-canvas { opacity: 0; }
 }
 .score-head .v {
   font-family: var(--en);
-  font-size: 1.05rem; font-weight: 700; color: #fff;
+  font-size: 1.05rem; font-weight: 700; color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .score-track { height: 3px; background: rgba(255, 255, 255, .10); }
@@ -603,7 +650,7 @@ body.no-bg #bg-canvas { opacity: 0; }
   font-size: 4.2rem; font-weight: 700; line-height: .9;
   letter-spacing: .01em;
   font-variant-numeric: tabular-nums;
-  color: #fff;
+  color: var(--text);
 }
 .overall .cap {
   font-size: .72rem; color: var(--text-dim);
@@ -631,7 +678,7 @@ body.no-bg #bg-canvas { opacity: 0; }
 .rank-name { font-size: .96rem; font-weight: 700; letter-spacing: .05em; }
 .rank-name span {
   font-family: var(--en);
-  font-size: .88rem; font-weight: 700; color: #fff;
+  font-size: .88rem; font-weight: 700; color: var(--text);
   margin-left: 12px; font-variant-numeric: tabular-nums;
 }
 .rank-desc { margin: 6px 0 0; font-size: .83rem; line-height: 2; color: var(--text-mid); }
@@ -645,7 +692,7 @@ body.no-bg #bg-canvas { opacity: 0; }
 .role-name .crown { color: var(--text-mid); margin-right: 7px; font-size: .8rem; }
 .role-v {
   font-family: var(--en);
-  font-size: 1.12rem; font-weight: 700; color: #fff;
+  font-size: 1.12rem; font-weight: 700; color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .role-sum { margin: 6px 0 12px; font-size: .8rem; line-height: 1.95; color: var(--text-dim); }
@@ -676,7 +723,7 @@ body.no-bg #bg-canvas { opacity: 0; }
   padding-bottom: 16px; margin-bottom: 6px;
   border-bottom: 1px solid var(--line);
 }
-.mg-box.ok  .mg-title { color: #fff; }
+.mg-box.ok  .mg-title { color: var(--text); }
 .mg-box.ng  .mg-title { color: var(--text-mid); }
 
 .callout {
@@ -687,7 +734,7 @@ body.no-bg #bg-canvas { opacity: 0; }
   line-height: 2.05;
   color: var(--text-mid);
 }
-.callout b { color: #fff; font-weight: 700; }
+.callout b { color: var(--text); font-weight: 700; }
 .callout.dim { border-left-color: var(--text-faint); }
 
 /* 相性 */
@@ -702,7 +749,7 @@ body.no-bg #bg-canvas { opacity: 0; }
   font-size: .8rem;
   font-weight: 700;
   letter-spacing: .12em;
-  color: #fff;
+  color: var(--text);
   line-height: 1;
 }
 .pair.ng .pair-code { border-color: var(--line); color: var(--text-mid); }
@@ -736,7 +783,13 @@ body.no-bg #bg-canvas { opacity: 0; }
   }
   body { background: #fff; color: #000; }
   #bg-canvas, .q-bar, .btn, .btn-row, .no-print { display: none !important; }
-  .section-title::after, .rh-name::after { background: #000; }
+  /* ロゴは白抜きなので、紙では反転させる */
+  .brand img { filter: invert(1); }
+  .brand.small { opacity: .7; }
+  .site-head { padding: 0 0 8px; }
+  .site-foot { margin-top: 32px; border-top-color: #ccc; }
+  .section-title::after, .rh-name::after,
+  .hero-title::after, .interlude .big::after { background: #000; }
   .result-hero { border-color: #999; }
   .axis-track i, .score-track i, .radar .pt { background: #000; fill: #000; }
   .axis-track, .score-track { background: #ddd; }
