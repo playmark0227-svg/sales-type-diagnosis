@@ -42,7 +42,108 @@
       $(s).classList.toggle('is-active', s === id);
     });
     window.scrollTo(0, 0);
+    document.body.classList.toggle('no-bg', id !== 'screen-start');
+    bg.setActive(id === 'screen-start');
   }
+
+  /* ---------- 背景（コーポレートサイトのヒーローに合わせた点と線） ----------
+     読み物になる設問・結果画面では動かさず、1枚描いて止める。 */
+  var bg = (function () {
+    var cv, ctx, pts = [], W = 0, H = 0, dpr = 1, raf = null, animate = true, reduce = false;
+    var LINK = 88;
+
+    function build() {
+      W = cv.clientWidth; H = cv.clientHeight;
+      if (!W || !H) return;
+      cv.width = Math.round(W * dpr);
+      cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(112, Math.max(34, (W * H) / 6000)));
+      pts = [];
+      for (var i = 0; i < n; i++) {
+        pts.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          vx: (Math.random() - .5) * .12,
+          vy: (Math.random() - .5) * .12
+        });
+      }
+    }
+
+    function step(move) {
+      var i, j, a, b, dx, dy, d;
+      if (move) {
+        for (i = 0; i < pts.length; i++) {
+          a = pts[i];
+          a.x += a.vx; a.y += a.vy;
+          if (a.x < 0) a.x += W; else if (a.x > W) a.x -= W;
+          if (a.y < 0) a.y += H; else if (a.y > H) a.y -= H;
+        }
+      }
+      ctx.clearRect(0, 0, W, H);
+      ctx.lineWidth = 1;
+      for (i = 0; i < pts.length; i++) {
+        a = pts[i];
+        for (j = i + 1; j < pts.length; j++) {
+          b = pts[j];
+          dx = a.x - b.x; dy = a.y - b.y;
+          d = Math.sqrt(dx * dx + dy * dy);
+          if (d < LINK) {
+            ctx.strokeStyle = 'rgba(255,255,255,' + ((1 - d / LINK) * .22).toFixed(3) + ')';
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.fillStyle = 'rgba(255,255,255,.5)';
+      for (i = 0; i < pts.length; i++) {
+        ctx.beginPath();
+        ctx.arc(pts[i].x, pts[i].y, .9, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function loop() {
+      step(true);
+      raf = requestAnimationFrame(loop);
+    }
+
+    function stop() {
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+    }
+
+    return {
+      init: function () {
+        cv = document.getElementById('bg-canvas');
+        if (!cv || !cv.getContext) return;
+        ctx = cv.getContext('2d');
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+        build();
+        step(false);
+        if (animate && !reduce) loop();
+
+        var t = null;
+        window.addEventListener('resize', function () {
+          clearTimeout(t);
+          t = setTimeout(function () {
+            stop();
+            build();
+            step(false);
+            if (animate && !reduce) loop();
+          }, 200);
+        });
+      },
+      setActive: function (on) {
+        animate = on;
+        if (!ctx) return;
+        stop();
+        if (on && !reduce) loop();
+      }
+    };
+  })();
 
   function save() {
     try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
@@ -230,7 +331,7 @@
 
   function plist(items, warn) {
     return '<ul class="plist' + (warn ? ' warn' : '') + '">' + items.map(function (it) {
-      return '<li><div class="t"><span class="mark">' + (warn ? '▲' : '◆') + '</span><span>' + esc(it.title) + '</span></div>' +
+      return '<li><div class="t"><span class="mark">—</span><span>' + esc(it.title) + '</span></div>' +
              '<p class="d">' + esc(it.detail) + '</p></li>';
     }).join('') + '</ul>';
   }
@@ -309,12 +410,12 @@
     /* ---- スキルスコア ---- */
     h.push('<h2 class="section-title">営業スキル <span class="sub">SALES SKILL</span></h2>');
     h.push('<div class="card">');
-    h.push('<div class="overall"><span class="num">' + skill.overall + '</span>' +
+    h.push('<div class="overall"><span class="big-num">' + skill.overall + '</span>' +
            '<span class="cap">総合スコア<br>100点満点</span></div>');
     h.push(radar(skill));
     S.SKILL_KEYS.forEach(function (k) {
       var sc = skill.scores[k];
-      var cls = sc >= 75 ? ' hi' : (sc <= 45 ? ' lo' : '');
+      var cls = sc <= 45 ? ' lo' : '';
       h.push('<div class="score-row"><div class="score-head"><span>' + esc(D.advice.skills[k].label) + '</span>' +
              '<span class="v">' + sc + '</span></div>' +
              '<div class="score-track' + cls + '"><i data-w="' + sc + '"></i></div></div>');
@@ -437,6 +538,8 @@
   }
 
   function init() {
+    bg.init();
+
     // 版の選択
     Array.prototype.forEach.call(document.querySelectorAll('.mode'), function (el) {
       el.addEventListener('click', function () {

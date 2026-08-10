@@ -4,16 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="format-detection" content="telephone=no">
-<title>営業タイプ診断｜あなたの売り方を16タイプで言語化する</title>
+<title>営業タイプ診断｜株式会社Insup</title>
 <meta name="description" content="64問であなたの営業タイプ（16タイプ）と営業スキル8項目を診断します。強み・弱み、向いている営業職種、マネージャー向けの育て方まで出ます。">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="営業タイプ診断｜あなたの売り方を16タイプで言語化する">
+<meta property="og:title" content="営業タイプ診断｜株式会社Insup">
 <meta property="og:description" content="64問であなたの営業タイプと営業スキル8項目を診断。向いている職種と育て方まで出ます。">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
 <div class="wrap">
 
@@ -23,7 +28,7 @@
   <section id="screen-start" class="screen is-active">
     <div class="hero-top">
       <span class="eyebrow">SALES TYPE DIAGNOSIS</span>
-      <h1 class="hero-title">あなたの売り方を<br><span class="grad">16タイプ</span>で言語化する</h1>
+      <h1 class="hero-title">あなたの売り方を<br>16タイプで言語化する</h1>
       <p class="hero-lead">
         営業の「タイプ」と「スキル」は別ものです。この診断は2つを分けて測り、
         強み・弱み・向いている職種、そしてマネージャー向けの育て方まで出します。
@@ -43,7 +48,7 @@
         <input type="radio" name="mode" value="full" checked>
         <div class="mode-head">
           <span class="mode-name">フル版</span>
-          <span class="mode-meta">全64問・約8分</span>
+          <span class="mode-meta">64 QUESTIONS / 8 MIN</span>
           <span class="mode-badge">推奨</span>
         </div>
         <p class="mode-desc">タイプ40問＋スキル24問。1軸あたり10問なので判定がぶれにくく、採用・配置・研修に使うならこちら。</p>
@@ -52,7 +57,7 @@
         <input type="radio" name="mode" value="lite">
         <div class="mode-head">
           <span class="mode-name">ライト版</span>
-          <span class="mode-meta">全36問・約4分</span>
+          <span class="mode-meta">36 QUESTIONS / 4 MIN</span>
         </div>
         <p class="mode-desc">タイプ20問＋スキル16問。結果の項目はフル版と同じですが、スコアは目安として扱ってください。SNS配布や社内の話のタネ向け。</p>
       </label>
@@ -63,7 +68,7 @@
       <button class="btn ghost" id="btn-resume" style="display:none">前回の続きから再開する</button>
     </div>
 
-    <p class="note" style="margin-top:16px">
+    <p class="note" style="margin-top:26px">
       回答はあなたのブラウザ内だけで処理されます。サーバーには何も送信されません。<br>
       直感で、少し早めに答えたほうが結果が正確になります。
     </p>
@@ -90,7 +95,7 @@
       <button class="btn" id="btn-next" disabled>次へ →</button>
     </div>
 
-    <p class="note" style="margin-top:20px">
+    <p class="note" style="margin-top:30px">
       「どちらが良いか」ではなく「実際の自分はどうか」で選んでください。<br>
       選ぶと自動で次の設問に進みます。
     </p>
@@ -103,8 +108,8 @@
     <div class="interlude">
       <span class="step-badge">STEP 1 COMPLETE</span>
       <p class="big">タイプの判定が終わりました</p>
-      <p class="note" style="max-width:26em;margin:0 auto 8px">
-        ここからは<b style="color:var(--text)">STEP2・営業スキル</b>です。<br>
+      <p class="note">
+        ここからは<b style="color:#fff">STEP2・営業スキル</b>です。<br>
         STEP1が「どう売りたいか（スタイル）」を聞いたのに対し、<br>
         STEP2は「実際にできているか（実力）」を聞きます。<br><br>
         タイプに優劣はありませんが、スキルには差が出ます。<br>
@@ -112,7 +117,7 @@
         あとの成長アドバイスが役に立ちます。
       </p>
     </div>
-    <div class="btn-row">
+    <div class="btn-row" style="margin-top:44px">
       <button class="btn" id="btn-step2">STEP2 にすすむ</button>
     </div>
   </section>
@@ -123,7 +128,7 @@
   <section id="screen-result" class="screen">
     <div id="result-body"></div>
 
-    <div class="btn-row two no-print" style="margin-top:34px">
+    <div class="btn-row two no-print" style="margin-top:56px">
       <button class="btn ghost" id="btn-print">結果を印刷 / PDF保存</button>
       <button class="btn ghost" id="btn-retry">もう一度診断する</button>
     </div>
