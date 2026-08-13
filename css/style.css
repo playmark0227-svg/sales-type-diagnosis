@@ -328,6 +328,178 @@ body.no-bg #bg-canvas { opacity: 0; }
 }
 
 /* ============================================================
+   受検者情報の入力フォーム
+   ============================================================ */
+
+.form { margin-top: 40px; }
+
+.field { margin-bottom: 28px; }
+
+.field label {
+  display: block;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: var(--text-mid);
+  margin-bottom: 10px;
+}
+.field label i {
+  font-style: normal;
+  font-size: .64rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--text);
+  border: 1px solid var(--line-strong);
+  padding: 2px 7px;
+  margin-left: 8px;
+  vertical-align: 1px;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field select {
+  display: block;
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--jp);
+  font-size: 1rem;          /* iOSで自動ズームさせないため16px以上 */
+  font-weight: 500;
+  letter-spacing: .04em;
+  line-height: 1.6;
+  transition: border-color .2s ease, background .2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field input::placeholder { color: var(--text-faint); font-weight: 400; }
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--text);
+  background: var(--surface-2);
+}
+.field.is-bad input,
+.field.is-bad select { border-color: var(--text-mid); }
+
+.field select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--text-mid) 50%),
+    linear-gradient(135deg, var(--text-mid) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 42px;
+}
+.field select option { background: #111; color: #fff; }
+
+.field-help { margin: 9px 0 0; font-size: .76rem; line-height: 1.85; color: var(--text-dim); }
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  cursor: pointer;
+  margin-bottom: 22px;
+}
+.consent input { position: absolute; opacity: 0; pointer-events: none; }
+.consent-box {
+  flex: 0 0 auto;
+  width: 18px; height: 18px;
+  margin-top: 5px;
+  border: 1px solid var(--line-strong);
+  position: relative;
+  transition: border-color .2s ease, background .2s ease;
+}
+.consent:hover .consent-box { border-color: var(--text); }
+.consent input:checked + .consent-box { background: var(--text); border-color: var(--text); }
+.consent input:checked + .consent-box::after {
+  content: "";
+  position: absolute;
+  left: 5px; top: 1px;
+  width: 5px; height: 10px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(42deg);
+}
+.consent-text { font-size: .82rem; line-height: 1.95; color: var(--text-mid); }
+.consent-text b { color: var(--text); font-weight: 700; }
+.consent-text a { color: var(--text-mid); }
+.consent.is-bad { border-color: var(--text-mid); }
+
+.form-error {
+  margin: 0 0 18px;
+  padding: 13px 16px;
+  border-left: 2px solid var(--text);
+  background: var(--surface-2);
+  font-size: .84rem;
+  line-height: 1.85;
+  color: var(--text);
+}
+
+/* 送信ステータス（結果画面） */
+.send-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 44px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: .82rem;
+  letter-spacing: .04em;
+  color: var(--text-mid);
+}
+.send-dot {
+  flex: 0 0 auto;
+  width: 7px; height: 7px;
+  margin-top: 11px;
+  background: var(--text-faint);
+  animation: pulse 1.3s ease-in-out infinite;
+}
+.send-text { flex: 1 1 220px; min-width: 0; line-height: 1.9; }
+.send-status.is-ok   .send-dot { background: var(--text); animation: none; }
+.send-status.is-fail .send-dot { background: var(--text-mid); animation: none; }
+.send-status.is-ok   .send-text { color: var(--text); }
+@keyframes pulse { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+
+.send-retry {
+  margin-left: auto;
+  padding: 8px 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--jp);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+.send-retry:hover { background: var(--text); color: #000; }
+
+.setup-warn {
+  margin: 26px 0 0;
+  padding: 14px 18px;
+  border: 1px dashed var(--line-strong);
+  font-size: .76rem;
+  line-height: 1.9;
+  color: var(--text-dim);
+}
+.setup-warn code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .92em;
+  color: var(--text-mid);
+}
+
+/* ============================================================
    設問画面
    ============================================================ */
 

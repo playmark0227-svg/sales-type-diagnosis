@@ -79,12 +79,85 @@
     <div class="btn-row">
       <button class="btn" id="btn-start">診断をはじめる</button>
       <button class="btn ghost" id="btn-resume" style="display:none">前回の続きから再開する</button>
+      <button class="btn ghost" id="btn-pending" style="display:none">前回の結果を再送する</button>
     </div>
 
-    <p class="note" style="margin-top:26px">
+    <p class="note" id="start-note" style="margin-top:26px">
       回答はあなたのブラウザ内だけで処理されます。サーバーには何も送信されません。<br>
       直感で、少し早めに答えたほうが結果が正確になります。
     </p>
+  </section>
+
+  <!-- ============================================================
+       受検者情報の入力（記録先が設定されているときだけ出ます）
+       ============================================================ -->
+  <section id="screen-entry" class="screen">
+    <div class="hero-top" style="padding-top:56px">
+      <span class="eyebrow">BEFORE YOU START</span>
+      <h1 class="hero-title" style="font-size:clamp(1.4rem,5.6vw,2.1rem)">受検者情報の入力</h1>
+      <p class="hero-lead">
+        診断をはじめる前に、下の項目を入力してください。<br>
+        入力いただいた内容と診断結果は、株式会社Insupが受け取ります。
+      </p>
+    </div>
+
+    <form id="entry-form" class="form" novalidate>
+      <div class="field">
+        <label for="f-name">氏名 <i>必須</i></label>
+        <input type="text" id="f-name" name="name" autocomplete="name" placeholder="山田 太郎" required>
+      </div>
+
+      <div class="field">
+        <label for="f-email">メールアドレス <i>必須</i></label>
+        <input type="email" id="f-email" name="email" autocomplete="email" placeholder="taro@example.co.jp" required>
+      </div>
+
+      <div class="field" data-field="company">
+        <label for="f-company">会社名・組織名</label>
+        <input type="text" id="f-company" name="company" autocomplete="organization" placeholder="株式会社◯◯">
+      </div>
+
+      <div class="field" data-field="dept">
+        <label for="f-dept">部署・職種</label>
+        <input type="text" id="f-dept" name="dept" placeholder="営業部 / フィールドセールス">
+      </div>
+
+      <div class="field" data-field="years">
+        <label for="f-years">営業経験年数</label>
+        <select id="f-years" name="years">
+          <option value="">選択してください</option>
+          <option value="未経験">未経験</option>
+          <option value="1年未満">1年未満</option>
+          <option value="1〜3年">1〜3年</option>
+          <option value="3〜5年">3〜5年</option>
+          <option value="5〜10年">5〜10年</option>
+          <option value="10年以上">10年以上</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="f-pass">合い言葉 <i>必須</i></label>
+        <input type="text" id="f-pass" name="passcode" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="案内された合い言葉" required>
+        <p class="field-help">案内メールや募集ページに記載されている合い言葉を入れてください。</p>
+      </div>
+
+      <label class="consent">
+        <input type="checkbox" id="f-agree" required>
+        <span class="consent-box"></span>
+        <span class="consent-text">
+          入力した<b>氏名・メールアドレス・所属</b>と、<b>診断結果および全設問への回答</b>を
+          株式会社Insupが受け取り、採用選考・配置・育成の参考として利用することに同意します。
+          <a id="contact-link" href="https://insup.co.jp/" target="_blank" rel="noopener">お問い合わせはこちら</a>
+        </span>
+      </label>
+
+      <p class="form-error" id="entry-error" hidden></p>
+
+      <div class="btn-row">
+        <button type="submit" class="btn" id="btn-entry">診断をはじめる</button>
+        <button type="button" class="btn ghost" id="btn-entry-back">← 戻る</button>
+      </div>
+    </form>
   </section>
 
   <!-- ============================================================
@@ -141,6 +214,12 @@
   <section id="screen-result" class="screen">
     <div id="result-body"></div>
 
+    <div class="send-status no-print" id="send-status" hidden>
+      <span class="send-dot"></span>
+      <span class="send-text" id="send-text">結果を送信しています…</span>
+      <button type="button" class="send-retry" id="btn-resend" hidden>再送する</button>
+    </div>
+
     <div class="btn-row two no-print" style="margin-top:56px">
       <button class="btn ghost" id="btn-print">結果を印刷 / PDF保存</button>
       <button class="btn ghost" id="btn-retry">もう一度診断する</button>
@@ -164,8 +243,14 @@
     </p>
   </footer>
 
+  <p class="setup-warn" id="setup-warn" hidden>
+    記録先が未設定です。<code>js/config.js</code> の <code>endpoint</code> に
+    Apps Script のウェブアプリURLを貼ると、受検者情報の入力と記録が有効になります（SETUP.md）。
+  </p>
+
 </div>
 
+<script src="js/config.js"></script>
 <script src="js/data.js"></script>
 <script src="js/scoring.js"></script>
 <script src="js/app.js"></script>
